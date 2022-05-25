@@ -22,7 +22,7 @@ import (
 		//  os.Getenv("APP_DB_NAME"))
 		"postgres",
 		"asdf",
-		"postgres"
+		"postgres",
 	 )
  
 	 ensureTableExists()
