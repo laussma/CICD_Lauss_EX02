@@ -6,17 +6,11 @@ on:
 
 jobs:
   run-tests:
-    # Containers must run in Linux based operating systems
     runs-on: ubuntu-latest
-    # Docker Hub image that `container-job` executes in
 
-    # Service containers to run with `container-job`
     services:
-      # Label used to access the service container
       postgres:
-        # Docker Hub image
         image: postgres
-        # Provide the password for postgres
         env:
           POSTGRES_PASSWORD: asdf
           POSTGRES_USER: postgres
@@ -25,7 +19,6 @@ jobs:
           - 5432:5432
   
     steps:
-      # Downloads a copy of the code in your repository before running CI tests
       - name: Check out repository code
         uses: actions/checkout@v3
       - name: Set up Go
@@ -34,21 +27,6 @@ jobs:
            go-version: 1.18
       - name: Test
         run: go test -v
+      - name: Build
+        run: go build
 
-
-  # build:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #   - uses: actions/checkout@v3
-
-  #   - name: Set up Go
-  #     uses: actions/setup-go@v3
-  #     with:
-  #       go-version: 1.18
-
-  #   #- name: Build
-  #    # run: go build
-
-  #   - name: Test
-  #     uses: actions/setup-go@v3
-  #     run: go test -v
